@@ -2,32 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
+body,
+.nav-backround {
+  /* background: rgb(70, 61, 129);
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    145deg,
+    rgba(70, 61, 129, 1) 0%,
+    rgba(25, 30, 54, 1) 100%
+  );
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center; */
+
+  background: black;
+  background: linear-gradient(145deg, rgb(20, 16, 47) 0%, black 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+button {
+  padding: 10px;
+  white-space: nowrap;
+  border-radius: 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgb(94 184 255) 0%, rgb(18 151 145) 90%);
+  color: white;
+  transition: 1s;
+}
+button:hover {
+  background: linear-gradient(
+    135deg,
+    rgb(37, 147, 232) 0%,
+    rgb(143, 210, 207) 90%
+  );
 }
