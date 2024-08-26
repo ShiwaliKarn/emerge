@@ -107,18 +107,23 @@ const SignUp = () => {
             {currState === "Sign Up" ? "Sign up" : "Log in"}
           </button>
           {currState === "Sign In" ? (
-            <p
-              className="text-white text-sm cursor-pointer"
-              onClick={() => setCurrState("Sign Up")}
-            >
-              Don't have an account?
-            </p>
+            <>
+              <p className="text-white text-sm cursor-pointer">
+                Forgot password?
+              </p>
+              <p
+                className="text-white text-sm cursor-pointer"
+                onClick={() => setCurrState("Sign Up")}
+              >
+                Don't have an account? Sign Up
+              </p>
+            </>
           ) : (
             <p
               className="text-white text-sm cursor-pointer"
               onClick={() => setCurrState("Sign In")}
             >
-              Already have an account?
+              Already have an account? Sign In
             </p>
           )}
         </form>
