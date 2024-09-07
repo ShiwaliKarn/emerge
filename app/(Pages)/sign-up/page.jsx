@@ -3,6 +3,8 @@ import { IoPerson } from "react-icons/io5";
 import { GoKey } from "react-icons/go";
 import { MdOutlineMail } from "react-icons/md";
 import { useState } from "react";
+import { account } from "@/app/appwrite/appwrite.js";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [currState, setCurrState] = useState("Sign In");
@@ -11,21 +13,57 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
-    //   event.preventDefault();
-    //   if (currState === "Sign Up" && password !== reEnteredPassword) {
-    //     setPasswordsMatch(false);
-    //     return;
-    //   }
-    //   setPasswordsMatch(true);
-    //   const user = { name, email, password };
-    //   if (currState === "Sign Up") {
-    //     registerUser(user);
-    //   } else {
-    //     loginUser({ email, password });
-    //   }
+    event.preventDefault();
+    if (currState === "Sign Up" && password !== reEnteredPassword) {
+      setPasswordsMatch(false);
+      return;
+    }
+    setPasswordsMatch(true);
+
+    if (currState === "Sign Up") {
+      try {
+        await registerUser(email, password, name);
+        alert("User registered successfully!");
+        router.push("/");
+      } catch (error) {
+        console.error("Registration Error:", error.message);
+        alert(error.message);
+      }
+    } else {
+      try {
+        await loginUser(email, password);
+        console.log(loginUser);
+
+        alert("Logged in successfully!");
+        router.push("/");
+      } catch (error) {
+        console.error("Login Error:", String(error.message));
+        alert(error.message);
+      }
+    }
   };
+
+  const registerUser = async (email, password, name) => {
+    await account.create("unique()", email, password, name);
+  };
+
+  const loginUser = async (email, password) => {
+    await account.createEmailPasswordSession(email, password);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await account.deleteSession("current");
+      alert("Logged out successfully!");
+    } catch (error) {
+      console.error("Logout Error:", error.message);
+      alert(error.message);
+    }
+  };
+
   return (
     <section className="flex max-sm:flex-col pt-32 container px-24 max-sm:gap-[70px] gap-[200px] ">
       <div className="flex gap-9 flex-col justify-center">
@@ -39,11 +77,11 @@ const SignUp = () => {
         <button className="w-40 uppercase">Get Started</button>
       </div>
       <div className="flex items-center flex-col gap-4">
-        <div className=" rounded-full p-3 h-16 w-16 bg-white  flex justify-center items-center">
+        <div className="rounded-full p-3 h-16 w-16 bg-white flex justify-center items-center">
           <IoPerson className="text-6xl" />
         </div>
         <form
-          className="flex  flex-col gap-4 items-center"
+          className="flex flex-col gap-4 items-center"
           onSubmit={handleSubmit}
         >
           {currState === "Sign Up" && (
@@ -101,8 +139,12 @@ const SignUp = () => {
                   onChange={(event) => setReEnteredPassword(event.target.value)}
                 />
               </div>
+              {!passwordsMatch && (
+                <p className="text-red-500">Passwords do not match!</p>
+              )}
             </>
           )}
+
           <button className="w-20">
             {currState === "Sign Up" ? "Sign up" : "Log in"}
           </button>
@@ -127,6 +169,12 @@ const SignUp = () => {
             </p>
           )}
         </form>
+        {/* <button
+          onClick={handleLogout}
+          className="mt-4 text-white text-sm cursor-pointer"
+        >
+          Logout
+        </button> */}
       </div>
     </section>
   );
