@@ -60,7 +60,7 @@ const Page = () => {
   };
 
   return (
-    <div className="container pt-24 ">
+    <div className="container pt-24 fade">
       <h2 className="text-white font-semibold text-center text-2xl">
         REGISTER NOW
       </h2>

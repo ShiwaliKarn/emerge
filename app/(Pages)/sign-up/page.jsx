@@ -7,7 +7,7 @@ import { account } from "@/app/appwrite/appwrite.js";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-const SignUp = ({ onAuthChange }) => {
+const SignUp = () => {
   const [currState, setCurrState] = useState("Sign In");
   const [password, setPassword] = useState("");
   const [reEnteredPassword, setReEnteredPassword] = useState("");

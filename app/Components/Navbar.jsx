@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   IoPersonCircle,
   IoPersonOutline,
@@ -22,9 +22,9 @@ const Navbar = () => {
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
   };
-
+  useEffect(() => {}, [isAuthenticated]);
   return (
-    <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-6 nav-backround z-20">
+    <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20">
       <Link href="/" className="cursor-pointer text-xl">
         EMERGE
       </Link>

@@ -4,7 +4,7 @@ import { account } from "@/app/appwrite/appwrite.js";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-const AuthContext = createContext();
+export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,12 +35,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const contextValue = {
+    isAuthenticated,
+    setIsAuthenticated,
+    handleLogout,
+  };
+
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, handleLogout }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 
