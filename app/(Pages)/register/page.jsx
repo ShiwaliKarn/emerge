@@ -19,39 +19,46 @@ const Page = () => {
 
   const sendMail = async (event) => {
     event.preventDefault();
+
     setIsSending(true);
 
     try {
-      const response = await fetch("/api/send-mail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          number,
-          profession,
-          message,
-        }),
-      });
+      await toast.promise(
+        (async () => {
+          const response = await fetch("/api/send-mail", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              number,
+              profession,
+              message,
+            }),
+          });
+          setFirstName("");
+          setLastName("");
+          setMessage("");
+          setNumber("");
+          setEmail("");
+          setProfession("");
+          setImage(null);
 
-      if (response.ok) {
-        toast.success("Registration done successfully!");
-
-        setFirstName("");
-        setLastName("");
-        setMessage("");
-        setNumber("");
-        setEmail("");
-        setProfession("");
-        setImage(null);
-      } else {
-        toast.error("Registration failed!");
-      }
+          if (!response.ok) {
+            throw new Error("Registration failed!");
+          }
+        })(),
+        {
+          loading: "Sending...",
+          success: <b>Registration successful!</b>,
+          error: <b>Registration failed!</b>,
+        }
+      );
     } catch (error) {
-      toast.error("Registration failed!");
+      console.error("Failure", error);
     } finally {
       setIsSending(false);
     }
