@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
-    const { firstName, lastName, email, number, profession, message } =
+    const { fullName, email, number, profession, message } =
       await request.json();
 
     const ipAddress =
@@ -21,15 +21,15 @@ export async function POST(request) {
 
     const mailOption = {
       from: `"Emerge" <${process.env.EMAIL_USER}>`,
-      to: "pouringff1@gmail.com",
+      to: "shishiwali@gmail.com",
       subject: "New Registation",
-      text: `First Name: ${firstName}
-             Last Name: ${lastName}
+      text: `
+             Name: ${fullName}
              Email: ${email}
              Phone Number: ${number}
              Profession: ${profession}
              Message: ${message}
-             IP Address: ${ipAddress}\n
+             IP Address: ${ipAddress}
              `,
     };
 

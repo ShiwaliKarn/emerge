@@ -5,14 +5,16 @@ import { MdOutlineMail } from "react-icons/md";
 import { useState } from "react";
 import { account } from "@/app/appwrite/appwrite.js";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-const SignUp = () => {
+const SignUp = ({ onAuthChange }) => {
   const [currState, setCurrState] = useState("Sign In");
   const [password, setPassword] = useState("");
   const [reEnteredPassword, setReEnteredPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+
   const router = useRouter();
 
   const handleSubmit = async (event) => {
@@ -26,22 +28,22 @@ const SignUp = () => {
     if (currState === "Sign Up") {
       try {
         await registerUser(email, password, name);
-        alert("User registered successfully!");
+        toast.success("Account created successfully!");
         router.push("/");
       } catch (error) {
         console.error("Registration Error:", error.message);
-        alert(error.message);
+        toast.error("Error creating account!");
       }
     } else {
       try {
         await loginUser(email, password);
         console.log(loginUser);
 
-        alert("Logged in successfully!");
+        toast.success("Logged in successfully!");
         router.push("/");
       } catch (error) {
         console.error("Login Error:", String(error.message));
-        alert(error.message);
+        toast.error("Log in failed!");
       }
     }
   };
@@ -52,16 +54,6 @@ const SignUp = () => {
 
   const loginUser = async (email, password) => {
     await account.createEmailPasswordSession(email, password);
-  };
-
-  const handleLogout = async () => {
-    try {
-      await account.deleteSession("current");
-      alert("Logged out successfully!");
-    } catch (error) {
-      console.error("Logout Error:", error.message);
-      alert(error.message);
-    }
   };
 
   return (
@@ -169,12 +161,6 @@ const SignUp = () => {
             </p>
           )}
         </form>
-        {/* <button
-          onClick={handleLogout}
-          className="mt-4 text-white text-sm cursor-pointer"
-        >
-          Logout
-        </button> */}
       </div>
     </section>
   );

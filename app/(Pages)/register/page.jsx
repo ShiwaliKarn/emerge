@@ -4,13 +4,11 @@ import toast from "react-hot-toast";
 
 const Page = () => {
   const [isSending, setIsSending] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [profession, setProfession] = useState("");
-  const [image, setImage] = useState(null);
 
   const professionOptions = [
     { value: "Student", label: "Student" },
@@ -25,27 +23,24 @@ const Page = () => {
     try {
       await toast.promise(
         (async () => {
-          const response = await fetch("/api/send-mail", {
+          const response = await fetch("/api/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              firstName,
-              lastName,
+              fullName,
               email,
               number,
               profession,
               message,
             }),
           });
-          setFirstName("");
-          setLastName("");
+          setFullName("");
           setMessage("");
           setNumber("");
           setEmail("");
           setProfession("");
-          setImage(null);
 
           if (!response.ok) {
             throw new Error("Registration failed!");
@@ -65,49 +60,23 @@ const Page = () => {
   };
 
   return (
-    <div className="container pt-24 fade">
+    <div className="container pt-24 ">
       <h2 className="text-white font-semibold text-center text-2xl">
         REGISTER NOW
       </h2>
       <form className="p-3 max-w-3xl mx-auto" onSubmit={sendMail}>
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex flex-col">
-            <label className="text-white">First name*</label>
+            <label className="text-white">Name*</label>
             <input
               type="text"
-              placeholder="Enter your first name"
+              placeholder="Enter your full name"
               className="p-2 w-80 rounded-sm"
               required
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
-          <div className="flex flex-col">
-            <label className="text-white">Last name</label>
-            <input
-              type="text"
-              placeholder="Enter your last name"
-              className="p-2 w-80 rounded-sm"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="flex mt-6 justify-between flex-col sm:flex-row items-center gap-4">
-          <div className="flex flex-col">
-            <label className="text-white">Mobile Number*</label>
-            <input
-              type="tel"
-              placeholder="8345627890"
-              className="p-2 w-80 rounded-sm"
-              required
-              pattern="[0-9]{10}"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
-            />
-          </div>
-
           <div className="flex flex-col">
             <label className="text-white">Email*</label>
             <input
@@ -123,11 +92,15 @@ const Page = () => {
 
         <div className="flex mt-6 justify-between flex-col sm:flex-row items-center gap-4">
           <div className="flex flex-col">
-            <label className="text-white">Upload your picture*</label>
+            <label className="text-white">Mobile Number*</label>
             <input
-              type="file"
-              className="cursor-pointer w-80 border border-white p-2 text-white rounded-sm"
-              onChange={(e) => setImage(e.target.files[0])}
+              type="tel"
+              placeholder="8345627890"
+              className="p-2 w-80 rounded-sm"
+              required
+              pattern="[0-9]{10}"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
