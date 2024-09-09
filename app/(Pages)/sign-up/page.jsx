@@ -65,7 +65,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="flex flex-col sm:flex-row pt-32 container px-24 sm:gap-[200px] gap-[70px] ">
+    <section className="flex flex-col sm:flex-row pt-32 container px-24 sm:gap-[200px] gap-[70px] fade">
       <div className="flex gap-9 flex-col justify-center">
         <p className="text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore

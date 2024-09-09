@@ -13,7 +13,6 @@ export async function POST(request) {
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
-
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -24,14 +23,13 @@ export async function POST(request) {
       from: `"Emerge" <${process.env.EMAIL_USER}>`,
       to: "pouringff1@gmail.com",
       subject: "New Registation",
-      text: `
-                First Name: ${firstName}
-                Last Name: ${lastName}
-                Email: ${email}
-                Phone Number: ${number}
-                Profession: ${profession}
-                Message: ${message}
-                IP Address: ${ipAddress}\n
+      text: `First Name: ${firstName}
+             Last Name: ${lastName}
+             Email: ${email}
+             Phone Number: ${number}
+             Profession: ${profession}
+             Message: ${message}
+             IP Address: ${ipAddress}\n
              `,
     };
 
