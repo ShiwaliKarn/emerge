@@ -21,6 +21,9 @@ body,
   background-position: center;
 }
 
+* {
+  scroll-behavior: smooth;
+}
 .container {
   max-width: 1200px;
   margin: auto;
@@ -35,7 +38,6 @@ button {
   cursor: pointer;
   background: linear-gradient(135deg, rgb(94 184 255) 0%, rgb(18 151 145) 90%);
   color: white;
-  transition: 1s;
 }
 button:hover {
   background: linear-gradient(

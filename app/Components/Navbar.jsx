@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState, useContext, useEffect } from "react";
 import {
   IoPersonCircle,
@@ -10,18 +9,14 @@ import {
 import AuthContext from "@/app/context/AuthContext.js";
 
 const Navbar = () => {
-  const pathname = usePathname();
-  const navItems = [
-    { name: "HOME", href: "/" },
-    { name: "ABOUT US", href: "/about" },
-    { name: "CONTACT", href: "/contact" },
-  ];
   const [showMenu, setShowMenu] = useState(false);
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
+  const [activeItem, setActiveItem] = useState("HOME");
 
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
   };
+
   useEffect(() => {}, [isAuthenticated]);
   return (
     <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20">
@@ -29,21 +24,44 @@ const Navbar = () => {
         EMERGE
       </Link>
       <ul className="flex items-center gap-10">
-        {navItems.map((item) => (
-          <li key={item.name}>
-            <Link
-              href={item.href}
-              className={`${
-                pathname === item.href
-                  ? "text-white underline underline-offset-8"
-                  : "text-gray-400"
-              } cursor-pointer`}
-            >
-              {item.name}
-            </Link>
+        <Link href="/">
+          <li
+            onClick={() => setActiveItem("HOME")}
+            className={`cursor-pointer ${
+              activeItem === "HOME"
+                ? "text-white underline underline-offset-8"
+                : "text-gray-400"
+            }`}
+          >
+            HOME
           </li>
-        ))}
+        </Link>
+        <Link href="/about">
+          <li
+            onClick={() => setActiveItem("ABOUT US")}
+            className={`cursor-pointer ${
+              activeItem === "ABOUT US"
+                ? "text-white underline underline-offset-8"
+                : "text-gray-400"
+            }`}
+          >
+            ABOUT US
+          </li>
+        </Link>
+        <Link href="#contact">
+          <li
+            onClick={() => setActiveItem("CONTACT")}
+            className={`cursor-pointer ${
+              activeItem === "CONTACT"
+                ? "text-white underline underline-offset-8"
+                : "text-gray-400"
+            }`}
+          >
+            CONTACT
+          </li>
+        </Link>
       </ul>
+
       {isAuthenticated ? (
         <div
           className="relative border-b-transparent border-b-[10px]"
