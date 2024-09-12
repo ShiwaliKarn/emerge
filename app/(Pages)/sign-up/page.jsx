@@ -7,6 +7,7 @@ import { useState } from "react";
 import { account } from "@/app/appwrite/appwrite.js";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const SignUp = () => {
   const [currState, setCurrState] = useState("Sign In");
@@ -16,6 +17,7 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [isSending, setIsSending] = useState(false);
+  const [googleSignIn, setGoogleSignIn] = useState(false);
 
   const router = useRouter();
 
@@ -61,21 +63,21 @@ const SignUp = () => {
   const loginUser = async (email, password) => {
     await account.createEmailPasswordSession(email, password);
   };
-  const handleGoogleLogin = async () => {
+  const handleGoogleLogin = () => {
     try {
-      setIsSending(true);
-      await account.createOAuth2Session(
+      setGoogleSignIn(true);
+      account.createOAuth2Session(
         "google",
         "http://localhost:3000/",
         "http://localhost:3000/"
       );
       toast.success("Logged in with Google successfully!");
-      setIsSending(false);
+      setGoogleSignIn(false);
       router.push("/");
     } catch (error) {
       console.error("Google Login Error:", error.message);
       toast.error("Google login failed!");
-      setIsSending(false);
+      setGoogleSignIn(false);
     }
   };
 
@@ -161,28 +163,27 @@ const SignUp = () => {
           )}
 
           <button className="w-20 button-gradient" disabled={isSending}>
-            {isSending
-              ? "Signing in..."
-              : currState === "Sign Up"
-              ? "Sign up"
-              : "Log in"}
+            {currState === "Sign Up" ? "Sign up" : "Log in"}
           </button>
           <div className="text-white">
             <p className="text-center mb-2">OR</p>
             <button
               onClick={handleGoogleLogin}
               className="flex items-center border border-white rounded-2xl gap-1 text-sm  p-2 cursor-pointer"
-              disabled={isSending}
+              disabled={googleSignIn}
             >
               <FcGoogle />
-              {isSending ? "Signing in..." : "Continue with google"}
+              {googleSignIn ? "Signing in..." : "Continue with google"}
             </button>
           </div>
           {currState === "Sign In" ? (
             <>
-              <p className="text-white text-sm cursor-pointer">
+              <Link
+                href="/forgot-password"
+                className="text-white text-sm cursor-pointer"
+              >
                 Forgot password?
-              </p>
+              </Link>
               <p
                 className="text-white text-sm cursor-pointer"
                 onClick={() => setCurrState("Sign Up")}
