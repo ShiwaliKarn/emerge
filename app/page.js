@@ -7,12 +7,14 @@ const Home = () => {
         <marquee
           behavior="scroll"
           direction="left"
-          scrollamount="15"
-          className="text-white uppercase font-bold tracking-widest border border-white p-2 italic"
+          scrollamount="10"
+          className="text-white uppercase font-bold tracking-widest border-y border-slate-400 p-2 italic"
         >
-          Register now for our new event!!!&nbsp;&nbsp;Register now for our new
-          event!!!&nbsp;&nbsp; Register now for our new event!!!&nbsp;&nbsp;
-          Register now for our new event!!!
+          Register now for our new
+          event!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register now for our new
+          event!!!&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register now for our new event!!!
         </marquee>
       </Link>
     </div>
