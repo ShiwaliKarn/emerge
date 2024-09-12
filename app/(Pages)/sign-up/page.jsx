@@ -1,6 +1,7 @@
 "use client";
 import { IoPerson } from "react-icons/io5";
 import { GoKey } from "react-icons/go";
+import { FcGoogle } from "react-icons/fc";
 import { MdOutlineMail } from "react-icons/md";
 import { useState } from "react";
 import { account } from "@/app/appwrite/appwrite.js";
@@ -54,6 +55,14 @@ const SignUp = () => {
 
   const loginUser = async (email, password) => {
     await account.createEmailPasswordSession(email, password);
+  };
+
+  const handleGoogleLogin = async () => {
+    account.createOAuth2Session(
+      "google",
+      "http://localhost:3000/",
+      "http://localhost:3000/"
+    );
   };
 
   return (
@@ -140,6 +149,16 @@ const SignUp = () => {
           <button className="w-20">
             {currState === "Sign Up" ? "Sign up" : "Log in"}
           </button>
+          <div className="text-white">
+            <p className="text-center mb-2">OR</p>
+            <div
+              onClick={handleGoogleLogin}
+              className="flex items-center border border-white rounded-2xl gap-1 text-sm  p-2 cursor-pointer"
+            >
+              <FcGoogle />
+              Continue with google
+            </div>
+          </div>
           {currState === "Sign In" ? (
             <>
               <p className="text-white text-sm cursor-pointer">

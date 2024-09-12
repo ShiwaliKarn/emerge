@@ -16,6 +16,9 @@ const Navbar = () => {
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
   };
+  const handleSignUpClick = () => {
+    setActiveItem("");
+  };
 
   useEffect(() => {}, [isAuthenticated]);
   return (
@@ -94,7 +97,7 @@ const Navbar = () => {
         </div>
       ) : (
         <Link href="/sign-up">
-          <button>SIGN UP</button>
+          <button onClick={handleSignUpClick}>SIGN UP</button>
         </Link>
       )}
     </nav>
