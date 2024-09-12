@@ -15,6 +15,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [isSending, setIsSending] = useState(false);
 
   const router = useRouter();
 
@@ -28,23 +29,27 @@ const SignUp = () => {
 
     if (currState === "Sign Up") {
       try {
+        setIsSending(true);
         await registerUser(email, password, name);
         toast.success("Account created successfully!");
+        setIsSending(false);
         router.push("/");
       } catch (error) {
         console.error("Registration Error:", error.message);
         toast.error("Error creating account!");
+        setIsSending(false);
       }
     } else {
       try {
+        setIsSending(true);
         await loginUser(email, password);
-        console.log(loginUser);
-
         toast.success("Logged in successfully!");
+        setIsSending(false);
         router.push("/");
       } catch (error) {
         console.error("Login Error:", String(error.message));
         toast.error("Log in failed!");
+        setIsSending(false);
       }
     }
   };
@@ -56,13 +61,22 @@ const SignUp = () => {
   const loginUser = async (email, password) => {
     await account.createEmailPasswordSession(email, password);
   };
-
   const handleGoogleLogin = async () => {
-    account.createOAuth2Session(
-      "google",
-      "http://localhost:3000/",
-      "http://localhost:3000/"
-    );
+    try {
+      setIsSending(true);
+      await account.createOAuth2Session(
+        "google",
+        "http://localhost:3000/",
+        "http://localhost:3000/"
+      );
+      toast.success("Logged in with Google successfully!");
+      setIsSending(false);
+      router.push("/");
+    } catch (error) {
+      console.error("Google Login Error:", error.message);
+      toast.error("Google login failed!");
+      setIsSending(false);
+    }
   };
 
   return (
@@ -75,7 +89,7 @@ const SignUp = () => {
           nostrum? Dolor?
         </p>
 
-        <button className="w-40 uppercase">Get Started</button>
+        <button className="button-gradient w-40 uppercase">Get Started</button>
       </div>
       <div className="flex items-center flex-col gap-4">
         <div className="rounded-full p-3 h-16 w-16 bg-white flex justify-center items-center">
@@ -93,7 +107,7 @@ const SignUp = () => {
                   type="text"
                   className="w-60 p-2 pl-10 outline-none rounded-3xl"
                   required
-                  placeholder="username"
+                  placeholder="name"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
@@ -146,18 +160,23 @@ const SignUp = () => {
             </>
           )}
 
-          <button className="w-20">
-            {currState === "Sign Up" ? "Sign up" : "Log in"}
+          <button className="w-20 button-gradient" disabled={isSending}>
+            {isSending
+              ? "Signing in..."
+              : currState === "Sign Up"
+              ? "Sign up"
+              : "Log in"}
           </button>
           <div className="text-white">
             <p className="text-center mb-2">OR</p>
-            <div
+            <button
               onClick={handleGoogleLogin}
               className="flex items-center border border-white rounded-2xl gap-1 text-sm  p-2 cursor-pointer"
+              disabled={isSending}
             >
               <FcGoogle />
-              Continue with google
-            </div>
+              {isSending ? "Signing in..." : "Continue with google"}
+            </button>
           </div>
           {currState === "Sign In" ? (
             <>

@@ -97,7 +97,9 @@ const Navbar = () => {
         </div>
       ) : (
         <Link href="/sign-up">
-          <button onClick={handleSignUpClick}>SIGN UP</button>
+          <button className="button-gradient" onClick={handleSignUpClick}>
+            SIGN UP
+          </button>
         </Link>
       )}
     </nav>
