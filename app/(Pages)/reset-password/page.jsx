@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const [resetting, setRestting] = useState(false);
   const [resetPassword, setResetPassword] = useState({
     newPassword: "",
     reEnterPassword: "",
@@ -14,9 +15,10 @@ const Page = () => {
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
-
+    setRestting(true);
     if (resetPassword.newPassword !== resetPassword.reEnterPassword) {
       setPasswordsMatch(false);
+      setRestting(false);
       return;
     }
     setPasswordsMatch(true);
@@ -26,6 +28,7 @@ const Page = () => {
     const secret = urlParams.get("secret");
 
     try {
+      setRestting(true);
       await account.updateRecovery(
         userId,
         secret,
@@ -34,16 +37,18 @@ const Page = () => {
       );
       toast.success("Password has been reset!");
       setResetPassword("");
+      setRestting(false);
       router.push("/sign-up");
     } catch (error) {
       console.error("Password Reset Error:", error.message);
       toast.error("Failed to reset password");
       setResetPassword("");
+      setRestting(false);
     }
   };
 
   return (
-    <section className="pt-32 container pl-4">
+    <section className="pt-32 container pl-4 fade">
       <div className="flex flex-col gap-1">
         <label className="text-slate-400">New password</label>
         <input
@@ -76,6 +81,7 @@ const Page = () => {
         <button
           className="text-left button-gradient w-36 mt-2"
           onClick={handleResetPassword}
+          disabled={resetting}
         >
           Reset Password
         </button>

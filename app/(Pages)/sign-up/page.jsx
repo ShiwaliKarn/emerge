@@ -169,7 +169,7 @@ const SignUp = () => {
             <p className="text-center mb-2">OR</p>
             <button
               onClick={handleGoogleLogin}
-              className="flex items-center border border-white rounded-2xl gap-1 text-sm  p-2 cursor-pointer"
+              className="flex items-center border border-white rounded-3xl gap-1 text-sm  p-2 cursor-pointer"
               disabled={googleSignIn}
             >
               <FcGoogle />

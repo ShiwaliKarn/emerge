@@ -17,9 +17,9 @@ const Page = () => {
         "http://localhost:3000/reset-password"
       );
       setEmail("");
-      toast.success("Email has been sent!");
+      toast.success("Reset link has been sent,check your email!");
     } catch (error) {
-      toast.error("Error sending email!");
+      toast.error("Error sending link!");
       console.error("Recovery Error:", error.message);
       setEmail("");
     } finally {
@@ -29,7 +29,7 @@ const Page = () => {
   };
 
   return (
-    <section className="pt-32 container pl-4">
+    <section className="pt-32 container pl-4 fade">
       <div className="flex flex-col gap-1">
         <label className="text-slate-400">Enter your email</label>
         <input
