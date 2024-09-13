@@ -12,7 +12,7 @@ const About = () => {
       Bagde and poetess Mrs. Indira Kislay. It also organised Emerge week for
       celebrations of 3 year anniversary which was published in the news. Ever
       since it has been the promoter of poetry and other spoken word are forms
-      in the city, and has emerged as a City level club in Nagpur
+      in the city, and has emerged as a City level club in Nagpur.
     </div>
   );
 };

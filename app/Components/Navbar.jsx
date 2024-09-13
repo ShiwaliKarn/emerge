@@ -7,6 +7,7 @@ import {
   IoLogOutOutline,
 } from "react-icons/io5";
 import AuthContext from "@/app/context/AuthContext.js";
+import Image from "next/image";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -23,8 +24,9 @@ const Navbar = () => {
   useEffect(() => {}, [isAuthenticated]);
   return (
     <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20">
-      <Link href="/" className="cursor-pointer text-xl">
+      <Link href="/" className="cursor-pointer text-xl flex items-center">
         EMERGE
+        <Image src="/emergeLogo.png" alt="logo" height={50} width={50} />
       </Link>
       <ul className="flex items-center gap-10">
         <Link href="/">

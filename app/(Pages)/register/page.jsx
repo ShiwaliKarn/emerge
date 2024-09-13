@@ -133,7 +133,11 @@ const Page = () => {
         </div>
 
         <div className="text-center mt-6">
-          <button type="submit" disabled={isSending}>
+          <button
+            type="submit"
+            disabled={isSending}
+            className="button-gradient"
+          >
             {isSending ? "Sending..." : "Submit"}
           </button>
         </div>
