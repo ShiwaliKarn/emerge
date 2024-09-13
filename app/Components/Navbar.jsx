@@ -39,7 +39,7 @@ const Navbar = () => {
 
   useEffect(() => {}, [isAuthenticated]);
   return (
-    <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20">
+    <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20 shadow-sm shadow-slate-800">
       <Link href="/" className="cursor-pointer text-xl flex items-center">
         EMERGE
         <Image src="/emergeLogo.png" alt="logo" height={50} width={50} />
