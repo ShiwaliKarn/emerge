@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ReadMore from "./Components/ReadMore";
 
 const Home = () => {
   return (
@@ -22,8 +23,9 @@ const Home = () => {
         width={1000}
         height={30}
         alt="poetry"
-        className="w-full"
+        className="w-full rounded-xl mb-3"
       />
+      <ReadMore />
     </div>
   );
 };

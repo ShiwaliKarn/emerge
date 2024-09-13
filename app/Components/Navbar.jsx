@@ -8,17 +8,33 @@ import {
 } from "react-icons/io5";
 import AuthContext from "@/app/context/AuthContext.js";
 import Image from "next/image";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross1 } from "react-icons/rx";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
   const [activeItem, setActiveItem] = useState("HOME");
+  const [clicked, setClicked] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
   };
-  const handleSignUpClick = () => {
-    setActiveItem("");
+  // const handleClickAnywhere = () => {
+  //   if (
+  //     activeItem != "HOME" ||
+  //     activeItem != "ABOUT US" ||
+  //     activeItem != "CONTACT"
+  //   ) {
+  //     setActiveItem("");
+  //   }
+  // };
+
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
+  const closeMenu = () => {
+    setClicked(false);
   };
 
   useEffect(() => {}, [isAuthenticated]);
@@ -28,20 +44,20 @@ const Navbar = () => {
         EMERGE
         <Image src="/emergeLogo.png" alt="logo" height={50} width={50} />
       </Link>
-      <ul className="flex items-center gap-10">
-        <Link href="/">
+      <ul className={clicked ? "nav-menu active" : "nav-menu"}>
+        <Link href="/" onClick={closeMenu}>
           <li
             onClick={() => setActiveItem("HOME")}
             className={`cursor-pointer ${
               activeItem === "HOME"
-                ? "text-white underline underline-offset-8"
+                ? "text-white underline underline-offset-8 "
                 : "text-gray-400"
             }`}
           >
             HOME
           </li>
         </Link>
-        <Link href="/about">
+        <Link href="/about" onClick={closeMenu}>
           <li
             onClick={() => setActiveItem("ABOUT US")}
             className={`cursor-pointer ${
@@ -53,7 +69,7 @@ const Navbar = () => {
             ABOUT US
           </li>
         </Link>
-        <Link href="#contact">
+        <Link href="#contact" onClick={closeMenu}>
           <li
             onClick={() => setActiveItem("CONTACT")}
             className={`cursor-pointer ${
@@ -99,11 +115,16 @@ const Navbar = () => {
         </div>
       ) : (
         <Link href="/sign-up">
-          <button className="button-gradient" onClick={handleSignUpClick}>
-            SIGN UP
-          </button>
+          <button className="button-gradient">SIGN UP</button>
         </Link>
       )}
+      <div onClick={handleClick} className="sm:hidden block ml-[-23%] ">
+        {clicked ? (
+          <RxCross1 className="text-2xl" />
+        ) : (
+          <RxHamburgerMenu className="text-2xl" />
+        )}
+      </div>
     </nav>
   );
 };
