@@ -1,6 +1,6 @@
 import Image from "next/image";
-import ReadMore from "./Components/ReadMore";
-import RegisterDialog from "./Components/RegisterDialog";
+import ReadMore from "@/components/ReadMore";
+import RegisterDialog from "@/components/RegisterDialog";
 
 const Home = () => {
   return (

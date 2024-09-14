@@ -93,10 +93,10 @@ const RegisterDialog = () => {
           </DialogTitle>
           <DialogDescription>
             <form
-              className="flex flex-col gap-1 text-white "
+              className="flex flex-col gap-1  text-white "
               onSubmit={sendMail}
             >
-              <label>Name*</label>
+              <label className="text-left"> Name*</label>
               <input
                 type="text"
                 placeholder="Enter your full name"
@@ -106,7 +106,7 @@ const RegisterDialog = () => {
                 onChange={(e) => setFullName(e.target.value)}
               />
 
-              <label>Email*</label>
+              <label className="text-left">Email*</label>
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -116,10 +116,10 @@ const RegisterDialog = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
 
-              <label>Mobile Number*</label>
+              <label className="text-left"> Mobile Number*</label>
               <input
                 type="tel"
-                placeholder="8345627890"
+                placeholder="Enter your mobile number"
                 className="p-2 rounded-sm text-black"
                 required
                 pattern="[0-9]{10}"
@@ -127,7 +127,7 @@ const RegisterDialog = () => {
                 onChange={(e) => setNumber(e.target.value)}
               />
 
-              <label>Profession*</label>
+              <label className="text-left">Profession*</label>
               <select
                 name="Profession"
                 className="rounded-sm h-10 text-black"
@@ -143,7 +143,7 @@ const RegisterDialog = () => {
                 ))}
               </select>
 
-              <label>Message</label>
+              <label className="text-left">Message</label>
               <textarea
                 placeholder="How did you hear about this club?"
                 className="h-20 p-2 rounded-sm text-black"
@@ -157,7 +157,7 @@ const RegisterDialog = () => {
                   disabled={isSending}
                   className="button-gradient"
                 >
-                  Submit
+                  Register
                 </button>
               </div>
             </form>

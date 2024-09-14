@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./Components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@/app/context/AuthContext.js";
-import Footer from "./Components/Footer";
-import PreloaderWrapper from "@/app/Components/PreloaderWrapper";
+import Footer from "@/components/Footer";
+import PreloaderWrapper from "@/components/PreloaderWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 

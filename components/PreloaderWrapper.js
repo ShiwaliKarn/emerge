@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Preloader from "@/app/Components/Preloader";
+import Preloader from "@/components/Preloader";
 
 const PreloaderWrapper = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);

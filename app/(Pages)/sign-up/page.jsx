@@ -4,7 +4,7 @@ import { GoKey } from "react-icons/go";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineMail } from "react-icons/md";
 import { useState } from "react";
-import { account } from "@/app/appwrite/appwrite.js";
+import { account } from "@/lib/appwrite/appwrite.js";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";

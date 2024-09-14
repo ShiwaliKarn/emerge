@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
-import { account } from "@/app/appwrite/appwrite.js";
+import { account } from "@/lib/appwrite/appwrite.js";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
