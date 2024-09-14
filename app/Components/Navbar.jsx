@@ -39,12 +39,12 @@ const Navbar = () => {
 
   useEffect(() => {}, [isAuthenticated]);
   return (
-    <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20 shadow-sm shadow-slate-800">
-      <Link href="/" className="cursor-pointer text-xl flex items-center">
+    <nav className="text-white flex items-center justify-between font-semibold fixed right-0 left-0 p-5 nav-backround z-20 shadow-sm shadow-slate-800 ">
+      <Link href="/" className="cursor-pointer  flex items-center text-md">
         EMERGE
-        <Image src="/emergeLogo.png" alt="logo" height={50} width={50} />
+        <Image src="/emergeLogo.png" alt="logo" height={40} width={40} />
       </Link>
-      <ul className={clicked ? "nav-menu active" : "nav-menu"}>
+      <ul className={clicked ? "nav-menu active text-sm" : "nav-menu text-sm"}>
         <Link href="/" onClick={closeMenu}>
           <li
             onClick={() => setActiveItem("HOME")}
@@ -115,10 +115,12 @@ const Navbar = () => {
         </div>
       ) : (
         <Link href="/sign-up">
-          <button className="button-gradient">SIGN UP</button>
+          <button className="button-gradient " onClick={closeMenu}>
+            SIGN UP
+          </button>
         </Link>
       )}
-      <div onClick={handleClick} className="sm:hidden block ml-[-23%] ">
+      <div onClick={handleClick} className="sm:hidden block ml-[-19%] ">
         {clicked ? (
           <RxCross1 className="text-2xl" />
         ) : (
