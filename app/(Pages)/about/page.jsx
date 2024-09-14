@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="container text-gray-400 pt-24 fade">
+    <div className="container text-gray-400 pt-24 fade p-3">
       EMERGE Poetry was founded in the year 2020 on the 24th day of June. The
       club was an initiative to bring together, like minded people that enjoyed
       similar appreciation for the spoken art form. The club soon grew to be one

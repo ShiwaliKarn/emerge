@@ -82,8 +82,8 @@ const SignUp = () => {
   };
 
   return (
-    <section className="flex flex-col sm:flex-row pt-32 container px-24 sm:gap-[200px] gap-[70px] fade">
-      <div className="flex gap-9 flex-col justify-center">
+    <section className="flex flex-col sm:flex-row pt-32 container  lg:gap-[200px] gap-[70px] fade">
+      <div className="flex gap-9 flex-col justify-center md:px-24 px-9">
         <p className="text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
           inventore illo minima similique velit quibusdam libero alias, ullam
@@ -93,7 +93,7 @@ const SignUp = () => {
 
         <button className="button-gradient w-40 uppercase">Get Started</button>
       </div>
-      <div className="flex items-center flex-col gap-4">
+      <div className="flex items-center flex-col gap-4 px-24">
         <div className="rounded-full p-3 h-16 w-16 bg-white flex justify-center items-center">
           <IoPerson className="text-6xl" />
         </div>
