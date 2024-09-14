@@ -79,7 +79,7 @@ const Page = () => {
         )}
 
         <button
-          className="text-left button-gradient w-36 mt-2"
+          className="text-left button-gradient w-32 mt-2"
           onClick={handleResetPassword}
           disabled={resetting}
         >

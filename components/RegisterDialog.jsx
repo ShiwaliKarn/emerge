@@ -10,6 +10,7 @@ import {
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+
 const RegisterDialog = () => {
   const [isSending, setIsSending] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -89,14 +90,13 @@ const RegisterDialog = () => {
       <DialogContent className="bg-[#0b0919] text-white">
         <DialogHeader>
           <DialogTitle>
-            <h2 className="font-semibold text-center text-xl">REGISTER NOW</h2>
+            <h3 className="font-semibold text-center tracking-wide text-gray-200">
+              REGISTER NOW
+            </h3>
           </DialogTitle>
           <DialogDescription>
-            <form
-              className="flex flex-col gap-1  text-white "
-              onSubmit={sendMail}
-            >
-              <label className="text-left"> Name*</label>
+            <form className="flex flex-col gap-1" onSubmit={sendMail}>
+              <label className="text-left text-gray-400"> Name*</label>
               <input
                 type="text"
                 placeholder="Enter your full name"
@@ -106,7 +106,7 @@ const RegisterDialog = () => {
                 onChange={(e) => setFullName(e.target.value)}
               />
 
-              <label className="text-left">Email*</label>
+              <label className="text-left text-gray-400">Email*</label>
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -116,7 +116,7 @@ const RegisterDialog = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
 
-              <label className="text-left"> Mobile Number*</label>
+              <label className="text-left text-gray-400"> Mobile Number*</label>
               <input
                 type="tel"
                 placeholder="Enter your mobile number"
@@ -127,7 +127,7 @@ const RegisterDialog = () => {
                 onChange={(e) => setNumber(e.target.value)}
               />
 
-              <label className="text-left">Profession*</label>
+              <label className="text-left text-gray-400">Profession*</label>
               <select
                 name="Profession"
                 className="rounded-sm h-10 text-black"
@@ -143,7 +143,7 @@ const RegisterDialog = () => {
                 ))}
               </select>
 
-              <label className="text-left">Message</label>
+              <label className="text-left text-gray-400">Message</label>
               <textarea
                 placeholder="How did you hear about this club?"
                 className="h-20 p-2 rounded-sm text-black"
@@ -151,7 +151,7 @@ const RegisterDialog = () => {
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-3">
                 <button
                   type="submit"
                   disabled={isSending}

@@ -40,7 +40,7 @@ const Page = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <button
-          className="text-left button-gradient w-20 mt-2"
+          className="text-left button-gradient w-16 mt-2"
           onClick={(e) => handleForgetPassword(e)}
           disabled={isSending}
         >
