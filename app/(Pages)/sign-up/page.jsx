@@ -136,7 +136,7 @@ const SignUp = () => {
               className="w-60 p-2 pl-10 outline-none rounded-3xl"
               required
               placeholder="password"
-              min={8}
+              minLength={8}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />

@@ -55,7 +55,7 @@ const Page = () => {
           type="password"
           placeholder="Enter new password"
           className="sm:w-96 w-[80%] p-2 rounded-sm"
-          min={8}
+          minLength={8}
           required
           onChange={(e) =>
             setResetPassword({ ...resetPassword, newPassword: e.target.value })
