@@ -6,16 +6,9 @@ const PreloaderWrapper = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const preloaderShown = localStorage.getItem("preloaderShown");
-
-    if (!preloaderShown) {
-      setTimeout(() => {
-        setIsLoading(false);
-        localStorage.setItem("preloaderShown", "true");
-      }, 1000);
-    } else {
+    setTimeout(() => {
       setIsLoading(false);
-    }
+    }, 1000);
   }, []);
 
   return <>{isLoading ? <Preloader /> : <>{children}</>}</>;
