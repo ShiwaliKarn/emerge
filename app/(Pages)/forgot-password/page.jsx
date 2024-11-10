@@ -14,7 +14,7 @@ const Page = () => {
     try {
       await account.createRecovery(
         email,
-        "http://localhost:3000/reset-password"
+        "https://emerge-sepia.vercel.app/reset-password"
       );
       setEmail("");
       toast.success("Reset link has been sent,check your email!");

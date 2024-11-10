@@ -71,9 +71,10 @@ const SignUp = () => {
         "http://localhost:3000/",
         "http://localhost:3000/"
       );
-      toast.success("Logged in with Google successfully!");
+
       setGoogleSignIn(false);
       router.push("/");
+      toast.success("Logged in with Google successfully!");
     } catch (error) {
       console.error("Google Login Error:", error.message);
       toast.error("Google login failed!");
@@ -85,10 +86,9 @@ const SignUp = () => {
     <section className="flex flex-col sm:flex-row pt-32 container  lg:gap-[200px] gap-[70px] fade">
       <div className="flex gap-9 flex-col justify-center md:px-24 px-9">
         <p className="text-gray-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-          inventore illo minima similique velit quibusdam libero alias, ullam
-          exercitationem ex iusto porro soluta repellendus ea rem laborum cumque
-          nostrum? Dolor?
+          If you are a poet, writer, performer, artist, or an enthusiast of the
+          written art, join us! Register now and become a part of this ever
+          growing community!
         </p>
 
         <button className="button-gradient w-40 uppercase">Get Started</button>

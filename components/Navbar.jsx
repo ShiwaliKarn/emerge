@@ -18,7 +18,8 @@ const Navbar = () => {
   const [clicked, setClicked] = useState(false);
 
   const toggleMenu = () => {
-    setShowMenu((prev) => !prev);
+    // setShowMenu((prev) => !prev);
+    setShowMenu(!showMenu);
   };
   // const handleClickAnywhere = () => {
   //   if (
@@ -88,11 +89,9 @@ const Navbar = () => {
           className="relative border-b-transparent border-b-[10px]"
           onMouseEnter={() => setShowMenu(true)}
           onMouseLeave={() => setShowMenu(false)}
+          onClick={toggleMenu}
         >
-          <IoPersonCircle
-            className="text-white text-4xl cursor-pointer"
-            onClick={toggleMenu}
-          />
+          <IoPersonCircle className="text-white text-4xl cursor-pointer" />
           {showMenu && (
             <div className="absolute right-0  w-36 bg-white rounded-md shadow-lg py-2 z-20">
               <Link
@@ -116,7 +115,7 @@ const Navbar = () => {
       ) : (
         <Link href="/sign-up">
           <button className="button-gradient " onClick={closeMenu}>
-            SIGN UP
+            SIGN IN
           </button>
         </Link>
       )}
