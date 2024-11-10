@@ -48,13 +48,11 @@ export async function POST(request) {
     const { fullName, email, number, profession, message, joiningAs } =
       await request.json();
 
-    // Retrieve the IP address of the user
     const ipAddress =
       request.headers.get("x-real-ip") ||
       request.headers.get("x-forwarded-for") ||
       request.connection.remoteAddress;
 
-    // Create a transporter object using the Gmail service
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -63,10 +61,9 @@ export async function POST(request) {
       },
     });
 
-    // Define the mail options
     const mailOptions = {
       from: `"Emerge" <${process.env.EMAIL_USER}>`,
-      to: "shishiwali@gmail.com", // Replace with your recipient's email address
+      to: process.env.EMAIL_USER,
       subject: "New Registration",
       text: `
         Name: ${fullName}
@@ -79,10 +76,8 @@ export async function POST(request) {
       `,
     };
 
-    // Send the email
     await transporter.sendMail(mailOptions);
 
-    // Respond with a success message
     return NextResponse.json({ message: "Email Sent" }, { status: 200 });
   } catch (error) {
     console.error("Error sending email:", error);

@@ -30,7 +30,7 @@ const About = () => {
             height={200}
             width={200}
             alt="gyanesh"
-            className="rounded-full "
+            className="rounded-full  border border-white p-2 "
           />
           <p className="mt-2">Gyanesh</p>
         </div>
@@ -40,7 +40,7 @@ const About = () => {
             height={200}
             width={200}
             alt="Sharvari"
-            className="rounded-full"
+            className="rounded-full border border-white p-2"
           />
           <p className="mt-2">Sharvari</p>
         </div>
